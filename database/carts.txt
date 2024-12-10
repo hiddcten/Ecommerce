@@ -1,0 +1,54 @@
+{
+  $jsonSchema: {
+    bsonType: 'object',
+    required: [
+      'userId',
+      'products'
+    ],
+    properties: {
+      userId: {
+        bsonType: 'objectId',
+        description: 'UserId must be an ObjectId and is required'
+      },
+      products: {
+        bsonType: 'array',
+        items: {
+          bsonType: 'object',
+          required: [
+            'productId',
+            'quantity'
+          ],
+          properties: {
+            productId: {
+              bsonType: 'objectId',
+              description: 'ProductId must be an ObjectId and is required'
+            },
+            quantity: {
+              bsonType: 'int',
+              minimum: 1,
+              description: 'Quantity must be an integer greater than 0 and is required'
+            }
+          }
+        },
+        description: 'Products must be an array of product objects and is required'
+      },
+      voucher: {
+        bsonType: 'objectId',
+        description: 'VoucherId must be an ObjectId referencing the promotion collection'
+      },
+      shippingMethod: {
+        bsonType: 'string',
+        'enum': [
+          'none',
+          'standard',
+          'express'
+        ],
+        description: 'Shipping method must be either \'none\', \'standard\', or \'express\''
+      },
+      loyaltyPoints: {
+        bsonType: 'int',
+        description: 'LoyaltyPoints must be an integer representing the user\'s loyalty points'
+      }
+    }
+  }
+}

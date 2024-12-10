@@ -1,0 +1,38 @@
+{
+  $jsonSchema: {
+    bsonType: 'object',
+    required: [
+      'user',
+      'product',
+      'comment'
+    ],
+    properties: {
+      user: {
+        bsonType: 'objectId',
+        description: 'Reference to the User collection and is required.'
+      },
+      product: {
+        bsonType: 'objectId',
+        description: 'Reference to the Product collection and is required.'
+      },
+      rating: {
+        bsonType: [
+          'int',
+          'null'
+        ],
+        description: 'Rating for the product, must be between 1 and 5 if provided.',
+        minimum: 1,
+        maximum: 5
+      },
+      comment: {
+        bsonType: 'string',
+        description: 'Comment about the product, required and maximum length is 1000.',
+        maxLength: 1000
+      },
+      createdAt: {
+        bsonType: 'date',
+        description: 'The creation date of the review, default is the current time.'
+      }
+    }
+  }
+}

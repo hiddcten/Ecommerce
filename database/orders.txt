@@ -1,0 +1,101 @@
+{
+  $jsonSchema: {
+    bsonType: 'object',
+    required: [
+      'userId',
+      'products',
+      'total',
+      'status',
+      'createdAt',
+      'pointsEarned',
+      'address'
+    ],
+    properties: {
+      userId: {
+        bsonType: 'objectId',
+        description: 'UserId must be an ObjectId and is required'
+      },
+      products: {
+        bsonType: 'array',
+        items: {
+          bsonType: 'object',
+          required: [
+            'productId',
+            'quantity'
+          ],
+          properties: {
+            productId: {
+              bsonType: 'objectId',
+              description: 'ProductId must be an ObjectId and is required'
+            },
+            quantity: {
+              bsonType: 'int',
+              minimum: 1,
+              description: 'Quantity must be an integer greater than 0 and is required'
+            }
+          }
+        },
+        description: 'Products must be an array of product objects and is required'
+      },
+      total: {
+        oneOf: [
+          {
+            bsonType: 'double'
+          },
+          {
+            bsonType: 'int'
+          }
+        ],
+        minimum: 0,
+        description: 'Total must be a non-negative number and is required'
+      },
+      status: {
+        bsonType: 'string',
+        'enum': [
+          'pending',
+          'processing',
+          'completed',
+          'canceled'
+        ],
+        description: 'Status must be one of \'pending\', \'processing\', \'completed\', or \'canceled\''
+      },
+      createdAt: {
+        bsonType: 'date',
+        description: 'CreatedAt must be a date'
+      },
+      pointsEarned: {
+        bsonType: 'int',
+        minimum: 0,
+        description: 'PointsEarned must be a non-negative integer and is required'
+      },
+      address: {
+        bsonType: 'object',
+        required: [
+          'name',
+          'phone',
+          'region',
+          'fullAddress'
+        ],
+        properties: {
+          name: {
+            bsonType: 'string',
+            description: 'Name is required'
+          },
+          phone: {
+            bsonType: 'string',
+            description: 'Phone is required'
+          },
+          region: {
+            bsonType: 'string',
+            description: 'Region is required'
+          },
+          fullAddress: {
+            bsonType: 'string',
+            description: 'Full Address is required'
+          }
+        },
+        description: 'Address must be an object with name, phone, region, and full address'
+      }
+    }
+  }
+}

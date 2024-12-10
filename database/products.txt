@@ -1,0 +1,130 @@
+{
+  $jsonSchema: {
+    bsonType: 'object',
+    required: [
+      'name',
+      'price',
+      'stock',
+      'category',
+      'slug'
+    ],
+    properties: {
+      name: {
+        bsonType: 'string',
+        description: 'The product name must be a string and is required.',
+        minLength: 3,
+        maxLength: 100
+      },
+      description: {
+        bsonType: 'string',
+        description: 'The product description is a string and is optional.',
+        maxLength: 1000
+      },
+      price: {
+        bsonType: 'number',
+        description: 'The product price must be a number greater than or equal to 0.',
+        minimum: 0
+      },
+      category: {
+        bsonType: 'string',
+        description: 'The category must be a string and is required.',
+        'enum': [
+          'Laptop',
+          'Phone',
+          'Tablet',
+          'Console',
+          'Accessory'
+        ]
+      },
+      variants: {
+        bsonType: 'array',
+        description: 'Detailed variants for the product, including color, stock, size, and specifications.',
+        items: {
+          bsonType: 'object',
+          required: [
+            'color',
+            'stock',
+            'size'
+          ],
+          properties: {
+            color: {
+              bsonType: 'string',
+              description: 'The color of the variant.'
+            },
+            stock: {
+              bsonType: 'int',
+              description: 'Stock for the specific variant.',
+              minimum: 0
+            },
+            size: {
+              bsonType: 'string',
+              description: 'The size of the variant.'
+            },
+            specs: {
+              bsonType: 'array',
+              description: 'Specifications for the variant.',
+              items: {
+                bsonType: 'object',
+                required: [
+                  'label',
+                  'value'
+                ],
+                properties: {
+                  label: {
+                    bsonType: 'string',
+                    description: 'The label of the specification.'
+                  },
+                  value: {
+                    bsonType: 'string',
+                    description: 'The value of the specification.'
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      images: {
+        bsonType: 'array',
+        description: 'A list of image URLs.',
+        items: {
+          bsonType: 'string',
+          pattern: '^(https?://.+|/uploads/.+)$'
+        }
+      },
+      isAvailable: {
+        bsonType: 'bool',
+        description: 'Indicates whether the product is active, default is true.'
+      },
+      createdAt: {
+        bsonType: 'date',
+        description: 'The creation date, defaulting to the current time.'
+      },
+      tags: {
+        bsonType: 'array',
+        description: 'A list of tags associated with the product.',
+        items: {
+          bsonType: 'string'
+        }
+      },
+      slug: {
+        bsonType: 'string',
+        description: 'The slug is a unique string used in URLs and is required.'
+      },
+      reviews: {
+        bsonType: 'array',
+        description: 'A list of reviews associated with the product.',
+        items: {
+          bsonType: 'objectId',
+          description: 'Reference to the Review collection.'
+        }
+      },
+      averageRating: {
+        bsonType: 'number',
+        description: 'The average rating of the product.',
+        minimum: 0,
+        maximum: 5
+      }
+    }
+  }
+}

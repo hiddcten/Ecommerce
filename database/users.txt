@@ -1,0 +1,115 @@
+{
+  $jsonSchema: {
+    bsonType: 'object',
+    required: [
+      'name',
+      'email',
+      'role',
+      'isActive',
+      'createdAt'
+    ],
+    properties: {
+      name: {
+        bsonType: 'string',
+        description: 'Name must be a string and is required'
+      },
+      email: {
+        bsonType: 'string',
+        pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$',
+        description: 'Email must be a valid email format and is required'
+      },
+      password: {
+        bsonType: 'string',
+        description: 'Password must be a string and is optional'
+      },
+      role: {
+        bsonType: 'string',
+        'enum': [
+          'admin',
+          'customer'
+        ],
+        description: 'Role must be either \'admin\' or \'customer\''
+      },
+      isActive: {
+        bsonType: 'bool',
+        description: 'isActive must be a boolean and is required'
+      },
+      addresses: {
+        bsonType: 'array',
+        items: {
+          bsonType: 'object',
+          required: [
+            'name',
+            'phone',
+            'region',
+            'fullAddress'
+          ],
+          properties: {
+            name: {
+              bsonType: 'string',
+              description: 'Name must be a string and is required'
+            },
+            phone: {
+              bsonType: 'string',
+              description: 'Phone number must be a string and is required'
+            },
+            region: {
+              bsonType: 'string',
+              description: 'Region must be a string and is required'
+            },
+            fullAddress: {
+              bsonType: 'string',
+              description: 'Full address must be a string and is required'
+            }
+          }
+        },
+        description: 'A list of addresses'
+      },
+      phoneNumber: {
+        bsonType: 'string',
+        description: 'PhoneNumber must be a string'
+      },
+      createdAt: {
+        bsonType: 'date',
+        description: 'CreatedAt must be a date'
+      },
+      orderHistory: {
+        bsonType: 'array',
+        description: 'A list of orders made by the user',
+        items: {
+          bsonType: 'object',
+          properties: {
+            orderId: {
+              bsonType: 'objectId',
+              description: 'The ID of the order'
+            },
+            orderDate: {
+              bsonType: 'date',
+              description: 'The date of the order'
+            },
+            orderTotal: {
+              bsonType: 'double',
+              description: 'The total amount of the order'
+            }
+          }
+        }
+      },
+      loyaltyPoints: {
+        bsonType: 'int',
+        description: 'Loyalty points accumulated by the user'
+      },
+      reviews: {
+        bsonType: 'array',
+        description: 'A list of review references made by the user',
+        items: {
+          bsonType: 'objectId',
+          description: 'Reference to the Review collection'
+        }
+      },
+      googleId: {
+        bsonType: 'string',
+        description: 'Google ID of the user'
+      }
+    }
+  }
+}

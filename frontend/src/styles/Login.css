@@ -1,0 +1,32 @@
+body {
+    background-color: #9A616D; /* Nền màu hồng */
+  }
+  
+  .card {
+    border-radius: 1rem;
+    background-color: #333; /* Khung màu xám đậm */
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .form-label {
+    color: #ccc;
+  }
+  
+  .btn-primary {
+    background-color: #ff6219;
+    border: none;
+  }
+  
+  .btn-primary:hover {
+    background-color: #e05d17;
+  }
+  
+  a {
+    color: #ff6219;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  

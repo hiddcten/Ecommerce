@@ -1,0 +1,44 @@
+{
+  $jsonSchema: {
+    bsonType: 'object',
+    required: [
+      'code',
+      'discount',
+      'validFrom',
+      'validTo',
+      'status',
+      'createdAt'
+    ],
+    properties: {
+      code: {
+        bsonType: 'string',
+        description: 'Code must be a string and is required'
+      },
+      discount: {
+        bsonType: 'int',
+        minimum: 0,
+        description: 'Discount must be a positive integer and is required'
+      },
+      validFrom: {
+        bsonType: 'date',
+        description: 'ValidFrom must be a date and is required'
+      },
+      validTo: {
+        bsonType: 'date',
+        description: 'ValidTo must be a date and is required'
+      },
+      status: {
+        'enum': [
+          'active',
+          'expired',
+          'canceled'
+        ],
+        description: 'Status must be \'active\', \'expired\', or \'canceled\''
+      },
+      createdAt: {
+        bsonType: 'date',
+        description: 'createdAt must be a date and is required'
+      }
+    }
+  }
+}
